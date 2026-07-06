@@ -1,0 +1,716 @@
+:root {
+  --kraft: #e8dcc4;
+  --kraft-dark: #d6c8a8;
+  --card: #fdfbf5;
+  --char: #241f18;
+  --red: #b8412a;
+  --green: #3d6b4f;
+  --amber: #c1811f;
+  --steel: #6b6355;
+  --line: rgba(36, 31, 24, 0.14);
+
+  /* Permit-type tab colors */
+  --teal: #2f6f6a;
+  --navy: #28425e;
+  --slate: #565f6b;
+  --plum: #6b4a7a;
+  --rust: #8a4f2b;
+  --gold: #a97a1f;
+
+  /* Kept for any legacy references */
+  --tile: var(--kraft);
+  --tile-2: var(--kraft-dark);
+  --white: var(--card);
+  --mustard: var(--amber);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 1px 1px, rgba(36, 31, 24, 0.05) 1px, transparent 0)
+      0 0 / 14px 14px,
+    var(--kraft);
+  color: var(--char);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.handwritten {
+  font-family: "Caveat", cursive;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  padding: 11px 13px;
+  border-radius: 3px;
+  border: 1.5px solid var(--char);
+  background: var(--card);
+  color: var(--char);
+  outline: none;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--steel);
+  margin-bottom: 6px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.btn {
+  padding: 11px 18px;
+  border-radius: 3px;
+  border: 1.5px solid var(--red);
+  background: var(--red);
+  color: var(--card);
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 12.5px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background: #9c3520;
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  background: var(--steel);
+  border-color: var(--steel);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: var(--card);
+  color: var(--char);
+  border: 1.5px solid var(--char);
+}
+
+.btn-secondary:hover {
+  background: var(--kraft-dark);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--steel);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12.5px;
+  text-decoration: underline;
+  padding: 4px;
+}
+
+.app-shell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 22px 24px 60px;
+}
+
+/* Legacy simple nav (kept for any screen not using the clipboard header) */
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 22px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.logo-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid var(--red);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.logo-badge::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Clipboard header (Dashboard) ---------- */
+.clip-header {
+  position: relative;
+  margin-bottom: 30px;
+  padding-top: 16px;
+}
+
+.clip {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 24px;
+  background: linear-gradient(180deg, #8a8478, #5c564c);
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.clip::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  right: 8px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+.header-inner {
+  background: var(--card);
+  border-radius: 6px;
+  padding: 18px 22px 20px;
+  box-shadow: 0 10px 24px rgba(36, 31, 24, 0.14);
+  border: 1px solid var(--line);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.logout-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  color: var(--steel);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.biz-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.biz-name {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.actions,
+.dash-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.section-label {
+  font-family: "Caveat", cursive;
+  font-size: 21px;
+  color: var(--steel);
+  margin: 0 0 12px 4px;
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+
+/* Legacy header naming, kept in case any screen still uses it */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dash-title {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ---------- Auth screen ---------- */
+.auth-wrap {
+  max-width: 380px;
+  margin: 70px auto;
+  padding: 0 24px;
+}
+
+.auth-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 30px;
+  box-shadow: 0 10px 24px rgba(36, 31, 24, 0.12);
+}
+
+.auth-title {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 21px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.auth-sub {
+  font-size: 14px;
+  color: var(--steel);
+  margin: 0 0 22px;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--steel);
+}
+
+.auth-error {
+  background: rgba(184, 65, 42, 0.1);
+  border: 1px solid rgba(184, 65, 42, 0.35);
+  color: var(--red);
+  font-size: 13.5px;
+  padding: 10px 12px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Empty state ---------- */
+.empty-wrap {
+  background: var(--card);
+  border: 1px dashed var(--steel);
+  border-radius: 6px;
+  padding: 44px 30px;
+  text-align: center;
+}
+
+.empty-decal {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 2.5px solid var(--char);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.empty-decal::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed var(--steel);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.empty-decal-mark {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--steel);
+  letter-spacing: 0.03em;
+}
+
+.empty-title {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.empty-sub {
+  font-size: 14px;
+  color: var(--steel);
+  max-width: 380px;
+  margin: 0 auto 26px;
+  line-height: 1.6;
+}
+
+.empty-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.empty-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 34px;
+  text-align: left;
+}
+
+.empty-step {
+  padding: 16px 16px 14px;
+  border-top: 2px solid var(--line);
+}
+
+.empty-step-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.empty-step h4 {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.empty-step p {
+  font-size: 12.5px;
+  color: var(--steel);
+  margin: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+  .empty-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Permit tickets (Dashboard) ---------- */
+.permit-list,
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ticket {
+  position: relative;
+  background: var(--card);
+  border-radius: 3px;
+  box-shadow: 0 4px 10px rgba(36, 31, 24, 0.1);
+  display: flex;
+  overflow: hidden;
+}
+
+.ticket-tab {
+  width: 8px;
+  flex-shrink: 0;
+}
+
+.tab-health {
+  background: var(--teal);
+}
+.tab-fire {
+  background: var(--red);
+}
+.tab-propane {
+  background: var(--slate);
+}
+.tab-business_license {
+  background: var(--plum);
+}
+.tab-commissary {
+  background: var(--rust);
+}
+.tab-insurance {
+  background: var(--navy);
+}
+.tab-vehicle_registration {
+  background: var(--green);
+}
+.tab-staff_certification {
+  background: var(--gold);
+}
+
+.ticket-body {
+  flex: 1;
+  padding: 15px 17px 15px 15px;
+  position: relative;
+}
+
+.ticket-perf {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px dashed rgba(36, 31, 24, 0.16);
+}
+
+.ticket-top,
+.permit-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.ticket-type,
+.permit-type {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14.5px;
+  margin: 0 0 3px;
+}
+
+.ticket-meta,
+.permit-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--steel);
+}
+
+.ticket-doc,
+.doc-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--steel);
+  text-decoration: underline;
+}
+
+.permit-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.permit-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Simpler card used on the public compliance page (no tabs) */
+.permit-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 15px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ---------- Stamp-style status ---------- */
+.stamp,
+.status-badge {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border: 2px solid;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.4);
+  display: inline-block;
+}
+
+.stamp-expired,
+.status-expired {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.stamp-urgent,
+.status-urgent {
+  color: var(--rust);
+  border-color: var(--rust);
+  transform: rotate(2deg);
+}
+
+.stamp-due,
+.status-due_soon {
+  color: var(--amber);
+  border-color: var(--amber);
+  transform: rotate(-2deg);
+}
+
+.stamp-active,
+.status-upcoming,
+.status-active {
+  color: var(--green);
+  border-color: var(--green);
+  transform: rotate(1deg);
+}
+
+/* ---------- COI recipients ---------- */
+.coi-wrap,
+.coi-fold {
+  border-top: 1px dashed var(--line);
+  margin-top: 12px;
+  padding-top: 10px;
+}
+
+.coi-toggle {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  color: var(--steel);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.coi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.coi-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--kraft);
+  border-radius: 3px;
+  padding: 9px 12px;
+  flex-wrap: wrap;
+}
+
+.coi-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.coi-recipient-name,
+.coi-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.coi-recipient-meta,
+.coi-meta {
+  font-size: 10.5px;
+  color: var(--steel);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 31, 24, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.modal-card {
+  background: var(--card);
+  border-radius: 6px;
+  max-width: 460px;
+  width: 100%;
+  padding: 26px;
+  box-shadow: 0 16px 40px rgba(36, 31, 24, 0.25);
+}
+
+.modal-title {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .ticket-top,
+  .permit-row-top,
+  .permit-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .permit-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .row-2 {
+    grid-template-columns: 1fr;
+  }
+  .biz-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
