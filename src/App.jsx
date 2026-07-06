@@ -36,4 +36,5 @@ export default function App() {
     return null; // brief loading flash, avoid UI jump
   }
 
-  return session ? <Dashboard session={session} /> : 
+  return session ? <Dashboard session={session} /> : }
+
