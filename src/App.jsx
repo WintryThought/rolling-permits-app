@@ -30,5 +30,5 @@ export default function App() {
     return null;
   }
 
-  return session ? <Dashboard session={session} /> : <AuthScreen />;}
+  return session ? <Dashboard session={session} /> : <AuthScreen />;
 }
