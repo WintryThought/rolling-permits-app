@@ -1,0 +1,55 @@
+:root {
+  --kraft: #e8dcc4;
+  --kraft-dark: #d6c8a8;
+  --card: #fdfbf5;
+  --char: #241f18;
+  --red: #b8412a;
+  --green: #3d6b4f;
+  --amber: #c1811f;
+  --steel: #6b6355;
+  --line: rgba(36, 31, 24, 0.14);
+
+  /* Permit-type tab colors */
+  --teal: #2f6f6a;
+  --navy: #28425e;
+  --slate: #565f6b;
+  --plum: #6b4a7a;
+  --rust: #8a4f2b;
+  --gold: #a97a1f;
+
+  /* Kept for any legacy references */
+  --tile: var(--kraft);
+  --tile-2: var(--kraft-dark);
+  --white: var(--card);
+  --mustard: var(--amber);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 1px 1px, rgba(36, 31, 24, 0.05) 1px, transparent 0)
+      0 0 / 14px 14px,
+    var(--kraft);
+  color: var(--char);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.handwritten {
+  font-family: "Caveat", cursive;
+}
+
+button {
+  font-family: in
