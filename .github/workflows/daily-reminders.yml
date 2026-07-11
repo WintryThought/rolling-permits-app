@@ -1,0 +1,38 @@
+name: Daily permit reminders
+
+on:
+  schedule:
+    # Runs at 13:00 UTC every day — that's 6am Pacific / 8am Central /
+    # 9am Eastern. Adjust the hour below if you want it earlier/later
+    # for your vendors' timezone. GitHub Actions cron is always UTC.
+    - cron: "0 13 * * *"
+  workflow_dispatch: {}
+    # ^ lets you manually trigger a run from the GitHub Actions tab,
+    # useful for testing without waiting for the schedule.
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        working-directory: reminders
+        run: pip install -r requirements.txt
+
+      - name: Run reminder engine
+        working-directory: reminders
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+        run: python reminder_engine.py
