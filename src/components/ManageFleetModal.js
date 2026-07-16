@@ -171,7 +171,3 @@ export default function ManageFleetModal({ vendorId, trucks, employees, permits,
     </>
   );
 }
-Done
-
-
-Usage limit reached ∙ Res
