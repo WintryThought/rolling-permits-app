@@ -1,0 +1,23 @@
+name: Send Outreach
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # 2:00 PM UTC daily (offset an hour from daily-reminders so they don't collide)
+  workflow_dispatch: {}    # lets you trigger it manually from the Actions tab too
+
+jobs:
+  send-outreach:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call send-outreach Edge Function
+        run: |
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://sorewoxkdjxaerwtjmrx.supabase.co/functions/v1/send-outreach" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+          echo "$body"
+          if [ "$http_code" -ge 300 ]; then
+            echo "Request failed with status $http_code"
+            exit 1
+          fi
