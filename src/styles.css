@@ -167,25 +167,13 @@ label {
 }
 
 .logo-badge {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2.5px solid var(--red);
-  position: relative;
+  width: 30px;
+  height: 18px;
   flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(194, 69, 46, 0.25);
-}
-
-.logo-badge::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: var(--red);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNDFmMTgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTAgODVoMTUwdi04YTYgNiAwIDAwLTYtNmgtMjRsLTEwLTIyYTYgNiAwIDAwLTUuNS0zLjVINzBhNiA2IDAgMDAtNiA1djYiLz48cGF0aCBkPSJNMTAgODVWNTBhNCA0IDAgMDE0LTRoNTZ2MzkiLz48cmVjdCB4PSI3MCIgeT0iNDYiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNNzYgNTBoMTgiLz48cGF0aCBkPSJNMTYwIDcxaDIwdjE0YTYgNiAwIDAxLTYgNmgtMTR6IiBmaWxsPSIjYjg0MTJhIiBzdHJva2U9IiNiODQxMmEiLz48Y2lyY2xlIGN4PSIzOCIgY3k9IjkzIiByPSIxMCIvPjxjaXJjbGUgY3g9IjM4IiBjeT0iOTMiIHI9IjMuNSIgZmlsbD0iIzI0MWYxOCIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkzIiByPSIxMCIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkzIiByPSIzLjUiIGZpbGw9IiMyNDFmMTgiLz48cGF0aCBkPSJNNCA2Mmg2TTQgNjhoNk00IDc0aDYiIHN0cm9rZT0iI2MxODExZiIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48L3N2Zz4=");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* ---------- Clipboard header (Dashboard) ---------- */
